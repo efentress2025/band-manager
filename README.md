@@ -1,2 +1,2 @@
 # band-manager
-An app for organizing band logistics/
+An app for organizing band logistics.
