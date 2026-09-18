@@ -20,6 +20,20 @@ function App() {
 
   const [newSongTitle, setNewSongTitle] = useState("");
 
+  function addSong() {
+    const newSong = {
+      id: Date.now(),
+      title: newSongTitle,
+      status: "Writing",
+      key: "",
+      bpm: 0,
+    };
+
+    setSongs([...songs, newSong]);
+
+    setNewSongTitle("");
+  }
+  
   return (
     <div>
       <h1>Band Manager</h1>
@@ -33,6 +47,10 @@ function App() {
       />
 
       <p>You're typing: {newSongTitle}</p>
+
+      <button onClick={addSong}>
+        Add Song
+      </button>
 
       {songs.map((song) => (
         <div key={song.id}>
