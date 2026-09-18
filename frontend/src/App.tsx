@@ -18,11 +18,21 @@ function App() {
     },
   ]);
 
+  const [newSongTitle, setNewSongTitle] = useState("");
+
   return (
     <div>
       <h1>Band Manager</h1>
 
       <h2>Songs</h2>
+
+      <input
+        type="text"
+        value={newSongTitle}
+        onChange={(event) => setNewSongTitle(event.target.value)}
+      />
+
+      <p>You're typing: {newSongTitle}</p>
 
       {songs.map((song) => (
         <div key={song.id}>
