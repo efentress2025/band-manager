@@ -19,19 +19,25 @@ function App() {
   ]);
 
   const [newSongTitle, setNewSongTitle] = useState("");
+  const [newSongStatus, setNewSongStatus] = useState("Writing");
+  const [newSongKey, setNewSongKey] = useState("");
+  const [newSongBpm, setNewSongBpm] = useState("");
 
   function addSong() {
     const newSong = {
       id: Date.now(),
       title: newSongTitle,
-      status: "Writing",
-      key: "",
-      bpm: 0,
+      status: newSongStatus,
+      key: newSongKey,
+      bpm: newSongBpm,
     };
 
     setSongs([...songs, newSong]);
 
     setNewSongTitle("");
+    setNewSongStatus("Writing");
+    setNewSongKey("");
+    setNewSongBpm("");
   }
   
   return (
@@ -42,11 +48,34 @@ function App() {
 
       <input
         type="text"
+        placeholder="Song title"
         value={newSongTitle}
         onChange={(event) => setNewSongTitle(event.target.value)}
       />
 
-      <p>You're typing: {newSongTitle}</p>
+      <select
+        value={newSongStatus}
+        onChange={(event) => setNewSongStatus(event.target.value)}
+      >
+        <option value="Writing">Writing</option>
+        <option value="Rehearsing">Rehearsing</option>
+        <option value="Recording">Recording</option>
+        <option value="Released">Released</option>
+      </select>
+
+      <input
+        type="text"
+        placeholder="Key"
+        value={newSongKey}
+        onChange={(event) => setNewSongKey(event.target.value)}
+      />
+
+      <input
+        type="number"
+        placeholder="BPM"
+        value={newSongBpm}
+        onChange={(event) => setNewSongBpm(event.target.value)}
+      />
 
       <button onClick={addSong}>
         Add Song
