@@ -1,10 +1,39 @@
+import { useState } from "react";
+
 function App() {
+  const [songs, setSongs] = useState([
+    {
+      id: 1,
+      title: "test1",
+      status: "Released",
+      key: "E Minor",
+      bpm: 135,
+    },
+    {
+      id: 2,
+      title: "test2",
+      status: "Writing",
+      key: "E Major",
+      bpm: 120,
+    },
+  ]);
+
   return (
     <div>
       <h1>Band Manager</h1>
-      <p>Manage your songs, rehearsals, and shows.</p>
+
+      <h2>Songs</h2>
+
+      {songs.map((song) => (
+        <div key={song.id}>
+          <h3>{song.title}</h3>
+          <p>Status: {song.status}</p>
+          <p>Key: {song.key}</p>
+          <p>BPM: {song.bpm}</p>
+        </div>
+      ))}
     </div>
   );
 }
 
-export default App
+export default App;
