@@ -39,6 +39,12 @@ function App() {
     setNewSongKey("");
     setNewSongBpm("");
   }
+
+  function deleteSong(id) {
+    const updatedSongs = songs.filter((song) => song.id !== id);
+
+    setSongs(updatedSongs);
+  }
   
   return (
     <div>
@@ -87,6 +93,10 @@ function App() {
           <p>Status: {song.status}</p>
           <p>Key: {song.key}</p>
           <p>BPM: {song.bpm}</p>
+
+          <button onClick={() => deleteSong(song.id)}>
+            Delete
+          </button>
         </div>
       ))}
     </div>
