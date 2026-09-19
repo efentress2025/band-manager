@@ -45,6 +45,23 @@ function App() {
 
     setSongs(updatedSongs);
   }
+
+  function editSong(id) {
+    const newTitle = prompt("Enter a new song title:");
+
+    const updatedSongs = songs.map((song) => {
+      if (song.id === id) {
+        return {
+          ...song,
+          title: newTitle,
+        };
+      }
+
+      return song;
+    });
+
+    setSongs(updatedSongs);
+  }
   
   return (
     <div>
@@ -94,6 +111,10 @@ function App() {
           <p>Key: {song.key}</p>
           <p>BPM: {song.bpm}</p>
 
+          <button onClick={() => editSong(song.id)}>
+            Edit
+          </button>
+          
           <button onClick={() => deleteSong(song.id)}>
             Delete
           </button>
