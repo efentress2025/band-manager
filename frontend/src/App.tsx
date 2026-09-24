@@ -1,5 +1,6 @@
 import { useState } from "react";
 import SongCard from "./components/SongCard";
+import AddSongForm from "./components/AddSongForm";
 
 function App() {
   const [songs, setSongs] = useState([
@@ -19,26 +20,13 @@ function App() {
     },
   ]);
 
-  const [newSongTitle, setNewSongTitle] = useState("");
-  const [newSongStatus, setNewSongStatus] = useState("Writing");
-  const [newSongKey, setNewSongKey] = useState("");
-  const [newSongBpm, setNewSongBpm] = useState("");
-
-  function addSong() {
+  function addSong(songData) {
     const newSong = {
       id: Date.now(),
-      title: newSongTitle,
-      status: newSongStatus,
-      key: newSongKey,
-      bpm: newSongBpm,
+      ...songData,
     };
 
     setSongs([...songs, newSong]);
-
-    setNewSongTitle("");
-    setNewSongStatus("Writing");
-    setNewSongKey("");
-    setNewSongBpm("");
   }
 
   function deleteSong(id) {
@@ -70,40 +58,7 @@ function App() {
 
       <h2>Songs</h2>
 
-      <input
-        type="text"
-        placeholder="Song title"
-        value={newSongTitle}
-        onChange={(event) => setNewSongTitle(event.target.value)}
-      />
-
-      <select
-        value={newSongStatus}
-        onChange={(event) => setNewSongStatus(event.target.value)}
-      >
-        <option value="Writing">Writing</option>
-        <option value="Rehearsing">Rehearsing</option>
-        <option value="Recording">Recording</option>
-        <option value="Released">Released</option>
-      </select>
-
-      <input
-        type="text"
-        placeholder="Key"
-        value={newSongKey}
-        onChange={(event) => setNewSongKey(event.target.value)}
-      />
-
-      <input
-        type="number"
-        placeholder="BPM"
-        value={newSongBpm}
-        onChange={(event) => setNewSongBpm(event.target.value)}
-      />
-
-      <button onClick={addSong}>
-        Add Song
-      </button>
+      <AddSongForm addSong={addSong} />
 
       {songs.map((song) => (
         <SongCard
