@@ -1,4 +1,5 @@
 import { useState } from "react";
+import SongCard from "./components/SongCard";
 
 function App() {
   const [songs, setSongs] = useState([
@@ -105,20 +106,12 @@ function App() {
       </button>
 
       {songs.map((song) => (
-        <div key={song.id}>
-          <h3>{song.title}</h3>
-          <p>Status: {song.status}</p>
-          <p>Key: {song.key}</p>
-          <p>BPM: {song.bpm}</p>
-
-          <button onClick={() => editSong(song.id)}>
-            Edit
-          </button>
-          
-          <button onClick={() => deleteSong(song.id)}>
-            Delete
-          </button>
-        </div>
+        <SongCard
+          key={song.id}
+          song={song}
+          editSong={editSong}
+          deleteSong={deleteSong}
+        />
       ))}
     </div>
   );
