@@ -1,6 +1,17 @@
 import { useState } from "react";
 
-function AddSongForm({ addSong }) {
+type SongData = {
+  title: string;
+  status: string;
+  key: string;
+  bpm: string;
+};
+
+type AddSongFormProps = {
+  addSong: (songData: SongData) => void;
+};
+
+function AddSongForm({ addSong }: AddSongFormProps) {
   const [title, setTitle] = useState("");
   const [status, setStatus] = useState("Writing");
   const [key, setKey] = useState("");

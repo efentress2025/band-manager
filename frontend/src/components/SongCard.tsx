@@ -1,4 +1,18 @@
-function SongCard({ song, editSong, deleteSong }) {
+type Song = {
+  id: number;
+  title: string;
+  status: string;
+  key: string;
+  bpm: string;
+};
+
+type SongCardProps = {
+  song: Song;
+  editSong: (id: number) => void;
+  deleteSong: (id: number) => void;
+};
+
+function SongCard({ song, editSong, deleteSong }: SongCardProps) {
   return (
     <div>
       <h3>{song.title}</h3>
