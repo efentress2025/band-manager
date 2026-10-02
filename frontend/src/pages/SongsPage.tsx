@@ -1,14 +1,7 @@
 import { useState } from "react";
 import AddSongForm from "../components/AddSongForm";
 import SongCard from "../components/SongCard";
-
-type Song = {
-  id: number;
-  title: string;
-  status: string;
-  key: string;
-  bpm: string;
-};
+import type { Song } from "../types/Song";
 
 function SongsPage() {
   const [songs, setSongs] = useState<Song[]>([]);

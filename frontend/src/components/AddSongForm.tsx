@@ -1,14 +1,8 @@
 import { useState } from "react";
-
-type SongData = {
-  title: string;
-  status: string;
-  key: string;
-  bpm: string;
-};
+import type { Song } from "../types/Song";
 
 type AddSongFormProps = {
-  addSong: (songData: SongData) => void;
+  addSong: (songData: Omit<Song, "id">) => void;
 };
 
 function AddSongForm({ addSong }: AddSongFormProps) {

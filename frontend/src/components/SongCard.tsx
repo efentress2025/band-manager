@@ -1,10 +1,4 @@
-type Song = {
-  id: number;
-  title: string;
-  status: string;
-  key: string;
-  bpm: string;
-};
+import type { Song } from "../types/Song";
 
 type SongCardProps = {
   song: Song;
