@@ -1,6 +1,7 @@
 import { useState } from "react";
 import AddShowForm from "../components/AddShowForm";
 import type { Show } from "../types/Show";
+import ShowCard from "../components/ShowCard";
 
 function ShowsPage() {
   const [shows, setShows] = useState<Show[]>([]);
@@ -14,6 +15,10 @@ function ShowsPage() {
     setShows((currentShows) => [...currentShows, newShow]);
   }
 
+  function deleteShow(id: number) {
+    setShows((currentShows) => currentShows.filter((show) => show.id !== id));
+  }
+
   return (
     <div>
       <h1>Shows</h1>
@@ -21,12 +26,11 @@ function ShowsPage() {
       <AddShowForm addShow={addShow} />
 
       {shows.map((show) => (
-        <div key={show.id}>
-          <h3>{show.name}</h3>
-          <p>Date: {show.date}</p>
-          <p>Venue: {show.venue}</p>
-          <p>Notes: {show.notes}</p>
-        </div>
+        <ShowCard 
+          key={show.id}
+          show={show}
+          deleteShow={deleteShow} 
+        />
       ))}
     </div>
   );
