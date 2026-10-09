@@ -15,12 +15,26 @@ function SongsPage() {
   }, []);
 
   function addSong(songData: Omit<Song, "id">) {
-    const newSong = {
-      id: Date.now(),
-      ...songData,
-    };
+    fetch("http://localhost:3000/songs", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(songData),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to add song");
+        }
 
-    setSongs((currentSongs) => [...currentSongs, newSong]);
+        return response.json();
+      })
+      .then((newSong: Song) => {
+        setSongs((currentSongs) => [...currentSongs, newSong]);
+      })
+      .catch((error) => {
+        console.error("Error adding song:", error);
+      });
   }
 
   function deleteSong(id: number) {

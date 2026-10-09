@@ -4,6 +4,7 @@ import cors from "cors";
 const app = express();
 
 app.use(cors());
+app.use(express.json());
 
 const PORT = 3000;
 
@@ -30,6 +31,17 @@ app.get("/", (req, res) => {
 
 app.get("/songs", (req, res) => {
   res.json(songs);
+});
+
+app.post("/songs", (req, res) => {
+  const newSong = {
+    id: Date.now(),
+    ...req.body,
+  };
+
+  songs.push(newSong);
+
+  res.status(201).json(newSong);
 });
 
 app.listen(PORT, () => {
