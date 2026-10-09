@@ -44,6 +44,20 @@ app.post("/songs", (req, res) => {
   res.status(201).json(newSong);
 });
 
+app.delete("/songs/:id", (req, res) => {
+  const id = Number(req.params.id);
+
+  const songIndex = songs.findIndex((song) => song.id === id);
+
+  if (songIndex === -1) {
+    return res.status(404).json({ message: "Song not found" });
+  }
+
+  songs.splice(songIndex, 1);
+
+  res.status(204).send();
+});
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });

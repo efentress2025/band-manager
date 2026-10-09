@@ -38,7 +38,21 @@ function SongsPage() {
   }
 
   function deleteSong(id: number) {
-    setSongs((currentSongs) => currentSongs.filter((song) => song.id !== id));
+    fetch(`http://localhost:3000/songs/${id}`, {
+      method: "DELETE",
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to delete song");
+        }
+
+        setSongs((currentSongs) =>
+          currentSongs.filter((song) => song.id !== id),
+        );
+      })
+      .catch((error) => {
+        console.error("Error deleting song:", error);
+      });
   }
 
   function editSong(id: number) {
